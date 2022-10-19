@@ -23,7 +23,7 @@ func Vertcoin() Network {
 	n.MessagePrefix, _ = hex.DecodeString("7c3614a6bcdcf784")
 	n.Identifier, _ = hex.DecodeString("a06a81c827cab983")
 	n.ChainLength = 5100
-	n.SeedHosts = []string{"localhost", "p2proxy.vertcoin.org", "vtc.alwayshashing.com", "crypto.office-on-the.net", "pool.vtconline.org"}
+	n.SeedHosts = []string{"localhost", "p2proxy.vertcoin.org", "mindcraftblocks.com", "vtc-fl.javerity.com"}
 	n.POWHash = func(b []byte) []byte {
 		vh, err := verthash.NewVerthash("verthash.dat", true)
 		if err != nil {
