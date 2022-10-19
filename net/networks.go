@@ -13,6 +13,7 @@ type Network struct {
 	MessagePrefix []byte
 	Identifier    []byte
 	P2PPort       int
+	RPCPort       int
 	SeedHosts     []string
 	ChainLength   int
 	POWHash       func([]byte) []byte
@@ -20,6 +21,7 @@ type Network struct {
 
 func Vertcoin() Network {
 	n := Network{P2PPort: 9346}
+	n.RPCPort = 5888
 	n.MessagePrefix, _ = hex.DecodeString("7c3614a6bcdcf784")
 	n.Identifier, _ = hex.DecodeString("a06a81c827cab983")
 	n.ChainLength = 5100
