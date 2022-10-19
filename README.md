@@ -13,7 +13,7 @@ Currently the following things are planned/completed:
 - [X] Retrieving the sharechain from other peers
 - [X] Building the sharechain
 - [X] Validating the sharechain
-- [ ] Connecting to a fullnode over RPC
+- [X] Connecting to a fullnode over RPC
 - [ ] Retrieve block template from fullnode
 - [ ] Compose block from share data
 - [ ] Stratum server
