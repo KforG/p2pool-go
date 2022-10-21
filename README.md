@@ -14,7 +14,7 @@ Currently the following things are planned/completed:
 - [X] Building the sharechain
 - [X] Validating the sharechain
 - [X] Connecting to a fullnode over RPC
-- [ ] Retrieve block template from fullnode
+- [X] Retrieve block template from fullnode
 - [ ] Compose block from share data
 - [ ] Stratum server
 - [ ] Submit shares to p2pool network

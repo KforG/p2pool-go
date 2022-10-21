@@ -14,8 +14,9 @@ type Network struct {
 	Identifier    []byte
 	P2PPort       int
 	RPCPort       int
-	SeedHosts     []string
 	ChainLength   int
+	Softforks     []string
+	SeedHosts     []string
 	POWHash       func([]byte) []byte
 }
 
@@ -26,6 +27,7 @@ func Vertcoin() Network {
 	n.Identifier, _ = hex.DecodeString("a06a81c827cab983")
 	n.ChainLength = 5100
 	n.SeedHosts = []string{"localhost", "p2proxy.vertcoin.org", "mindcraftblocks.com", "vtc-fl.javerity.com"}
+	n.Softforks = []string{"bip34", "bip66", "bip65", "csv", "segwit", "taproot"}
 	n.POWHash = func(b []byte) []byte {
 		vh, err := verthash.NewVerthash("verthash.dat", true)
 		if err != nil {
