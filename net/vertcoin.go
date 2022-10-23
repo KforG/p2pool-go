@@ -37,7 +37,7 @@ func Vertcoin() Network {
 		}
 		logging.Errorf("Datafile failed verification: %v\n", err)
 		logging.Infof("Creating new datafile... This can take a while\n")
-		verthash.MakeVerthashDatafile("verthash.dat")
+		verthash.EnsureVerthashDatafile("verthash.dat")
 	}
 
 	return n
