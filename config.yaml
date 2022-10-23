@@ -1,0 +1,3 @@
+network: vertcoin   # See list of supported networks in the README
+rpcUser: somevalue
+rpcPass: supersecurepassword

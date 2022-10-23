@@ -3,6 +3,7 @@ package main
 import (
 	"time"
 
+	"github.com/gertjaap/p2pool-go/config"
 	"github.com/gertjaap/p2pool-go/logging"
 	p2pnet "github.com/gertjaap/p2pool-go/net"
 	"github.com/gertjaap/p2pool-go/p2p"
@@ -11,6 +12,9 @@ import (
 
 func main() {
 	logging.SetLogLevel(int(logging.LogLevelDebug))
+
+	config.LoadConfig()
+
 	p2pnet.ActiveNetwork = p2pnet.Vertcoin()
 
 	sc := work.NewShareChain()
