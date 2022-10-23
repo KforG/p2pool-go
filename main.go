@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"time"
 
 	"github.com/gertjaap/p2pool-go/config"
@@ -12,6 +13,8 @@ import (
 
 func main() {
 	logging.SetLogLevel(int(logging.LogLevelDebug))
+	logFile, _ := os.OpenFile("p2pool.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	logging.SetLogFile(logFile)
 
 	config.LoadConfig()
 
