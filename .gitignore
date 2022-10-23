@@ -4,3 +4,5 @@ p2pool.log
 debug.go
 sharechain.dat
 p2pool-go.log
+config.yaml
+verthash.dat
