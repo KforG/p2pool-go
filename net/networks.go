@@ -1,11 +1,6 @@
 package net
 
-import (
-	"encoding/hex"
-
-	"github.com/gertjaap/p2pool-go/logging"
-	verthash "github.com/gertjaap/verthash-go"
-)
+import "github.com/gertjaap/p2pool-go/logging"
 
 var ActiveNetwork Network
 
@@ -14,43 +9,20 @@ type Network struct {
 	Identifier    []byte
 	P2PPort       int
 	RPCPort       int
+	WorkerPort    int
 	ChainLength   int
 	Softforks     []string
 	SeedHosts     []string
 	POWHash       func([]byte) []byte
 }
 
-func Vertcoin() Network {
-	n := Network{P2PPort: 9346}
-	n.RPCPort = 5888
-	n.MessagePrefix, _ = hex.DecodeString("7c3614a6bcdcf784")
-	n.Identifier, _ = hex.DecodeString("a06a81c827cab983")
-	n.ChainLength = 5100
-	n.SeedHosts = []string{"localhost", "p2proxy.vertcoin.org", "mindcraftblocks.com", "vtc-fl.javerity.com"}
-	n.Softforks = []string{"bip34", "bip66", "bip65", "csv", "segwit", "taproot"}
-	n.POWHash = func(b []byte) []byte {
-		vh, err := verthash.NewVerthash("verthash.dat", true)
-		if err != nil {
-			logging.Errorf("Failed to load verthash.dat into memory: %v", err)
-			panic(err)
-		}
-		defer vh.Close()
-		res, _ := vh.SumVerthash(b)
-		return res[:]
-	}
+func SetNetwork(net string) {
+	switch {
+	case net == "vertcoin" || net == "Vertcoin":
+		ActiveNetwork = Vertcoin()
 
-	// Verify verthash.dat is present and okay
-	var ok bool = false
-	for !ok {
-		logging.Infof("Verifying verthash.dat... This can take a few moments\n")
-		ok, err := verthash.VerifyVerthashDatafile("verthash.dat")
-		if ok {
-			return n
-		}
-		logging.Errorf("Datafile failed verification: %v\n", err)
-		logging.Infof("Creating new datafile... This can take a while\n")
-		verthash.MakeVerthashDatafile("verthash.dat")
+	default:
+		logging.Errorf("%s is currently not supported. See the README for supported networks", net)
+		panic("ERROR: Invalid network name!")
 	}
-
-	return n
 }

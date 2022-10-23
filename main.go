@@ -17,8 +17,7 @@ func main() {
 	logging.SetLogFile(logFile)
 
 	config.LoadConfig()
-
-	p2pnet.ActiveNetwork = p2pnet.Vertcoin()
+	p2pnet.SetNetwork(config.Active.Network)
 
 	sc := work.NewShareChain()
 	err := sc.Load()
