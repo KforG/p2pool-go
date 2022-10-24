@@ -14,6 +14,7 @@ import (
 func main() {
 	logging.SetLogLevel(int(logging.LogLevelDebug))
 	logFile, _ := os.OpenFile("p2pool.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	defer logFile.Close()
 	logging.SetLogFile(logFile)
 
 	config.LoadConfig()
