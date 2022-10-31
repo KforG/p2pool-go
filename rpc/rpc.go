@@ -2,9 +2,9 @@ package rpc
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/btcsuite/btcd/rpcclient"
+	"github.com/gertjaap/p2pool-go/config"
 	"github.com/gertjaap/p2pool-go/logging"
 	"github.com/gertjaap/p2pool-go/net"
 )
@@ -14,8 +14,8 @@ var ConnRPC *rpcclient.Client
 func InitRPC() error {
 	connCfg := &rpcclient.ConnConfig{
 		Host:         fmt.Sprintf("127.0.0.1:%d", net.ActiveNetwork.RPCPort),
-		User:         os.Getenv("RPCUSER"), // IDK this should probably be given as an argument on launch instead
-		Pass:         os.Getenv("RPCPASS"), // -=-
+		User:         config.Active.RPCUser,
+		Pass:         config.Active.RPCPass,
 		HTTPPostMode: true,
 		DisableTLS:   true,
 	}
