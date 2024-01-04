@@ -18,7 +18,7 @@ func main() {
 	logging.SetLogFile(logFile)
 
 	config.LoadConfig()
-	p2pnet.SetNetwork(config.Active.Network)
+	p2pnet.SetNetwork(config.Active.Network, config.Active.Testnet)
 
 	sc := work.NewShareChain()
 	err := sc.Load()

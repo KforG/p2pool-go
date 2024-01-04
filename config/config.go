@@ -12,6 +12,7 @@ type Config struct {
 	Network string `yaml:"network"`
 	RPCUser string `yaml:"rpcUser"`
 	RPCPass string `yaml:"rpcPass"`
+	Testnet bool   `yaml:"testnet"`
 }
 
 var Active Config
@@ -32,12 +33,16 @@ func LoadConfig() {
 
 	// Override config file if started with flags
 	net := flag.String("n", "", "Network")
+	testnet := flag.Bool("testnet", false, "Testnet")
 	user := flag.String("u", "", "RPC Username")
 	pass := flag.String("p", "", "RPC Password")
 	flag.Parse()
 
 	if *net != "" {
 		Active.Network = *net
+	}
+	if *testnet {
+		Active.Testnet = true
 	}
 	if *user != "" {
 		Active.RPCUser = *user

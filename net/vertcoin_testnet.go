@@ -7,16 +7,12 @@ import (
 	verthash "github.com/gertjaap/verthash-go"
 )
 
-func Vertcoin(testnet bool) Network {
-	if testnet {
-		return TestnetVertcoin()
-	}
-
-	n := Network{P2PPort: 9346}
-	n.RPCPort = 5888
-	n.WorkerPort = 9171
-	n.MessagePrefix, _ = hex.DecodeString("7c3614a6bcdcf784")
-	n.Identifier, _ = hex.DecodeString("a06a81c827cab983")
+func TestnetVertcoin() Network {
+	n := Network{P2PPort: 9345}
+	n.RPCPort = 15888
+	n.WorkerPort = 9175
+	n.MessagePrefix, _ = hex.DecodeString("7c3614a6bcdcf793")
+	n.Identifier, _ = hex.DecodeString("a06a81c827cab972")
 	n.ChainLength = 5100
 	n.SeedHosts = []string{"localhost", "p2proxy.vertcoin.org", "mindcraftblocks.com", "vtc-fl.javerity.com"}
 	n.Softforks = []string{"bip34", "bip66", "bip65", "csv", "segwit", "taproot"}

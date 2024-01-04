@@ -16,10 +16,10 @@ type Network struct {
 	POWHash       func([]byte) []byte
 }
 
-func SetNetwork(net string) {
+func SetNetwork(net string, testnet bool) {
 	switch {
 	case net == "vertcoin" || net == "Vertcoin":
-		ActiveNetwork = Vertcoin()
+		ActiveNetwork = Vertcoin(testnet)
 
 	default:
 		logging.Errorf("%s is currently not supported. See the README for supported networks", net)
